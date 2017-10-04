@@ -11,7 +11,7 @@
         <property name="connection.password">root</property>
 
         <mapping resource="BookEntity.hbm.xml"/>
-        <mapping class="Entity.BookEntity"/>
+        <mapping class="ru.fab.task.model.Book"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
