@@ -4,127 +4,99 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "book", schema = "test")
+@Table(name = "book")
 public class Book {
-        private int id;
-        private String title;
-        private String description;
-        private String author;
-        private String isbn;
-        private int printYear;
-        private int readAlready;
 
-        @Id
-        @Column(name = "id")
-        public int getId() {
-            return id;
-        }
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    @Column(name = "title")
+    private String title;
 
-        @Basic
-        @Column(name = "title")
-        public String getTitle() {
-            return title;
-        }
+    @Column(name = "description")
+    private String description;
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
+    @Column(name = "author")
+    private String author;
 
-        @Basic
-        @Column(name = "description")
-        public String getDescription() {
-            return description;
-        }
+    @Column(name = "isbn")
+    private String isbn;
 
-        public void setDescription(String description) {
-            this.description = description;
-        }
+    @Column(name = "print_year")
+    private int printYear;
 
-        @Basic
-        @Column(name = "author")
-        public String getAuthor() {
-            return author;
-        }
+    @Column(name = "read_already")
+    private boolean readAlready;
 
-        public void setAuthor(String author) {
-            this.author = author;
-        }
+    public int getId() {
+        return id;
+    }
 
-        @Basic
-        @Column(name = "isbn")
-        public String getIsbn() {
-            return isbn;
-        }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        public void setIsbn(String isbn) {
-            this.isbn = isbn;
-        }
+    public String getTitle() {
+        return title;
+    }
 
-        @Basic
-        @Column(name = "print_year")
-        public int getPrintYear() {
-            return printYear;
-        }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        public void setPrintYear(int printYear) {
-            this.printYear = printYear;
-        }
+    public String getDescription() {
+        return description;
+    }
 
-        @Basic
-        @Column(name = "read_already")
-        public int getReadAlready() {
-            return readAlready;
-        }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-        public void setReadAlready(int readAlready) {
-            this.readAlready = readAlready;
-        }
+    public String getAuthor() {
+        return author;
+    }
 
-       /* @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-            Entity.BookEntity that = (Entity.BookEntity) o;
+    public String getIsbn() {
+        return isbn;
+    }
 
-            if (id != that.id) return false;
-            if (printYear != that.printYear) return false;
-            if (readAlready != that.readAlready) return false;
-            if (title != null ? !title.equals(that.title) : that.title != null) return false;
-            if (description != null ? !description.equals(that.description) : that.description != null) return false;
-            if (author != null ? !author.equals(that.author) : that.author != null) return false;
-            if (isbn != null ? !isbn.equals(that.isbn) : that.isbn != null) return false;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-            return true;
-        }*/
+    public int getPrintYear() {
+        return printYear;
+    }
 
-       /* @Override
-        public int hashCode() {
-            int result = id;
-            result = 31 * result + (title != null ? title.hashCode() : 0);
-            result = 31 * result + (description != null ? description.hashCode() : 0);
-            result = 31 * result + (author != null ? author.hashCode() : 0);
-            result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
-            result = 31 * result + printYear;
-            result = 31 * result + readAlready;
-            return result;
-        }*/
+    public void setPrintYear(int printYear) {
+        this.printYear = printYear;
+    }
 
-        @Override
-        public String toString() {
-            return "Book{" +
-                    "id=" + id +
-                    ", title='" + title + '\'' +
-                    ", description='" + description + '\'' +
-                    ", author='" + author + '\'' +
-                    ", isbn='" + isbn + '\'' +
-                    ", printYear=" + printYear +
-                    ", readAlready=" + readAlready +
-                    '}';
-        }
+    public boolean getReadAlready() {
+        return readAlready;
+    }
+
+    public void setReadAlready(boolean readAlready) {
+        this.readAlready = readAlready;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", author='" + author + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", printYear=" + printYear +
+                ", readAlready=" + readAlready +
+                '}';
+    }
 }
 
