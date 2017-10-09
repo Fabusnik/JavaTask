@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<c:url var="addAction" value="/books/add"/>
+
 <form:form action="${addAction}" commandName="book">
     <table class="text">
         <c:if test="${!empty book.title}">
