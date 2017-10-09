@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
 <%@ page session="false" %>
 <html>
 <head>
@@ -60,7 +61,7 @@
     Book List
 </h1>
 <div>
-pages:
+pages:"${maxPages}"
 </div>
 <c:if test="${!empty listBooks}">
     <table class="tg">
@@ -87,6 +88,11 @@ pages:
         </c:forEach>
     </table>
 </c:if>
+
+<display:table name="listBooks" pagesize="5" requestURI="/books" class="tg">
+    <display:column property="title" title="Title"  />
+    <display:column property="author" title="Author"  />
+</display:table>
 
 <h1 class="text">Add a Book</h1>
 

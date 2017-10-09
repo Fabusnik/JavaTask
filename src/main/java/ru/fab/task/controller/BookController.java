@@ -25,6 +25,8 @@ public class BookController {
     public String listBooks( Model model){
         model.addAttribute("book", new Book());
         model.addAttribute("listBooks", this.bookService.listBooks());
+        model.addAttribute("maxPages", bookService.listBooks().size()/10+1);
+        //model.addAttribute("page", page);
         return "books";
     }
 
