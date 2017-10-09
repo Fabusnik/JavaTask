@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import ru.fab.task.model.Book;
 import ru.fab.task.service.BookService;
 
@@ -21,11 +18,23 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public String listBooks( Model model){
+    @RequestMapping(value = "/books/{page}", method = RequestMethod.GET)
+    public String listBooks(@PathVariable("page") Integer page, Model model){
+
         model.addAttribute("book", new Book());
-        model.addAttribute("listBooks", this.bookService.listBooks());
+
+        if (page == null)
+            page = 1;
+
         model.addAttribute("maxPages", bookService.listBooks().size()/10+1);
+        model.addAttribute("page", page);
+
+        int endList;
+        endList = 10*(page-1)+9;
+        if (endList > this.bookService.listBooks().size())
+            endList = this.bookService.listBooks().size();
+
+        model.addAttribute("listBooks", this.bookService.listBooks().subList(10*(page-1), endList));
         //model.addAttribute("page", page);
         return "books";
     }
