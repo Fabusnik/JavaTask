@@ -63,6 +63,7 @@
 <div>
 pages:"${maxPages}"
 </div>
+
 <c:if test="${!empty listBooks}">
     <table class="tg">
         <tr>
