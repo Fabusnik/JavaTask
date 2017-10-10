@@ -18,24 +18,11 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @RequestMapping(value = "/books/{page}", method = RequestMethod.GET)
-    public String listBooks(@PathVariable("page") Integer page, Model model){
+    @RequestMapping(value = "/books", method = RequestMethod.GET)
+    public String listBooks(Model model){
 
         model.addAttribute("book", new Book());
-
-        if (page == null)
-            page = 1;
-
-        model.addAttribute("maxPages", bookService.listBooks().size()/10+1);
-        model.addAttribute("page", page);
-
-        int endList;
-        endList = 10*(page-1)+9;
-        if (endList > this.bookService.listBooks().size())
-            endList = this.bookService.listBooks().size();
-
-        model.addAttribute("listBooks", this.bookService.listBooks().subList(10*(page-1), endList));
-        //model.addAttribute("page", page);
+        model.addAttribute("listBooks", this.bookService.listBooks());
         return "books";
     }
 

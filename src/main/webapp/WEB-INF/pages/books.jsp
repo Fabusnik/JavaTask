@@ -62,78 +62,14 @@
     Book List
 </h1>
 
-<div>
-   Total pages: ${maxPages}
-
-</div>
-
-<div id="pagination">
-    <c:url value="/books/${page-1}" var="prev">
-
-    </c:url>
-
-    <c:if test="${page > 1}">
-        <a href="<c:out value="${prev}" />" class="pn prev">Prev</a>
-    </c:if>
-
-    <c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
-        <c:choose>
-            <c:when test="${page == i.index}">
-                <span>${i.index}</span>
-            </c:when>
-            <c:otherwise>
-                <c:url value="/books/${i.index}" var="url">
-
-                </c:url>
-                <a href='<c:out value="${url}" />'>${i.index}</a>
-            </c:otherwise>
-        </c:choose>
-    </c:forEach>
-
-    <c:url value="/books/${page + 1}" var="next">
-    </c:url>
-    <c:if test="${page + 1 <= maxPages}">
-        <a href='<c:out value="${next}" />' class="pn next">Next</a>
-    </c:if>
-
-</div>
-
-
-<c:if test="${!empty listBooks}">
-    <table class="tg">
-        <tr>
-            <th width="120">Title</th>
-            <th width="120">Author</th>
-            <th width="120">Read Already</th>
-            <th width="60">Edit</th>
-            <th width="60">Delete</th>
-        </tr>
-        <c:forEach items="${listBooks}" var="book">
-            <tr>
-                <td><a href="/bookdata/${book.id}" target="_blank">${book.title}</a></td>
-                <td>${book.author}</td>
-
-                <td align="centre">
-                    <c:if test="${book.readAlready}">Yes</c:if>
-                    <c:if test="${!book.readAlready}">No</c:if>
-                </td>
-
-                <td><a href="<c:url value='/edit/${book.id}'/>">Edit</a></td>
-                <td><a href="<c:url value='/remove/${book.id}'/>">Delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
-
-
-
 <br/>
 <br/>
 
-<display:table name="listBooks" pagesize="5" requestURI="/books" class="tg">
-    <display:column property="id" title="ID" href="/edit/${id}" />
+<display:table id="book" name="${listBooks}" pagesize="5" requestURI="" class="tg">
     <display:column property="title" title="Title"/>
     <display:column property="author" title="Author"/>
+    <display:column title="Edit"><a href="/edit/${book.id}">Edit</display:column>
+    <display:column title="Remove"/>
 </display:table>
 
 <h1 class="text">Add a Book</h1>

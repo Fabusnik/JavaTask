@@ -7,7 +7,7 @@
 <body>
 
 <br/>
-<a href="<c:url value="/books/1"/>">Books list</a>
+<a href="<c:url value="/books"/>">Books list</a>
 <br/>
 </body>
 </html>
